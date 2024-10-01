@@ -39,7 +39,7 @@ public class CruddemoApplication {
 		int theId = 2;
 		Student tempStudent = appDAO.findStudentAndCoursesByStudentId(theId);
 
-		Course tempCourse1 = new Course("How to speed cude");
+		Course tempCourse1 = new Course("How to speed cube");
 		Course tempCourse2 = new Course("Atari 2600");
 
 		tempStudent.addCourse(tempCourse1);
