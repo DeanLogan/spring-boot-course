@@ -13,6 +13,12 @@ import java.util.List;
 @Component
 @Order(1)
 public class MyDemoLoggingAspect {
+    @After("execution(* com.example.aopdemo.dao.AccountDAO.findAccounts(..))")
+    public void afterFinallyFindAccountsAdvice(JoinPoint theJoinPoint) {
+        String method = theJoinPoint.getSignature().toShortString();
+        System.out.println("\n======>>>>>> Executing @After (finally) on method "+method);
+    }
+
     @AfterThrowing(
             pointcut = "execution(* com.example.aopdemo.dao.AccountDAO.findAccounts(..))",
             throwing = "theExc"
