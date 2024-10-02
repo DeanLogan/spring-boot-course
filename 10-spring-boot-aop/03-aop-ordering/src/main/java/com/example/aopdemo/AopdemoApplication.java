@@ -20,8 +20,26 @@ public class AopdemoApplication {
 	public CommandLineRunner commandLineRunner(AccountDAO theAccountDAO, MembershipDAO theMembershipDAO) {
 		return runner -> {
 			// demoTheBeforeAdvice(theAccountDAO, theMembershipDAO);
-			demoTheAfterReturningAdvice(theAccountDAO);
+			// demoTheAfterReturningAdvice(theAccountDAO);
+			demoAfterthrowingAdvice(theAccountDAO);
 		};
+	}
+
+	private void demoAfterthrowingAdvice(AccountDAO theAccountDAO) {
+		List<Account> theAccounts = null;
+
+		try {
+			// add a boolean flag to simulate exceptions
+			boolean tripWire = true;
+			theAccounts = theAccountDAO.findAccounts(tripWire);
+		} catch (Exception exc) {
+			System.out.println("\n\nMain program: caught exception: "+exc);
+		}
+
+		System.out.println("\n \nMain program: demoAfterthrowingAdvice");
+		System.out.println("---");
+		System.out.println(theAccounts);
+		System.out.println("\n");
 	}
 
 	private void demoTheAfterReturningAdvice(AccountDAO theAccountDAO) {
